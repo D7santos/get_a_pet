@@ -19,7 +19,7 @@ function AddPet() {
     async function registerPet(pet) {
         let msgType = 'success'
         
-        const formData = new FormData
+        const formData = new FormData()
         await Object.keys(pet).forEach((key) => {
             if(key === 'images'){
                 for(let i = 0; i< pet[key].length; i++){
@@ -45,7 +45,7 @@ function AddPet() {
         setFlashMessage(data.message, msgType)
         
         if(msgType !== 'error') {
-            navigate('/pets/mypets')
+            navigate('/pet/mypets')
         }
     }
 

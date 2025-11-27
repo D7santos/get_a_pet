@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import formStyles from "./Form.module.css";
 
-import Input from "./Input";
+import Input from "./InputAndTextarea";
 import Select from "./Select";
 
 function PetForm({ handleSubmit, petData, btnText }) {
@@ -11,9 +11,8 @@ function PetForm({ handleSubmit, petData, btnText }) {
   const colors = ["Branco", "Preto", "Cinza", "Caramelo", "Mesclado"];
 
   function onFileChange(e) {
-    setPreview(Array.from(e.target.files))
+    setPreview(Array.from(e.target.files));
     setPet({ ...pet, images: [...e.target.files] });
-
   }
 
   function handleChange(e) {
@@ -26,7 +25,7 @@ function PetForm({ handleSubmit, petData, btnText }) {
 
   function submit(e) {
     e.preventDefault();
-    handleSubmit(pet)
+    handleSubmit(pet);
   }
 
   return (
@@ -88,6 +87,15 @@ function PetForm({ handleSubmit, petData, btnText }) {
         handleOnChange={handleColor}
         value={pet.color || ""}
       />
+      <Input
+        text="Descrição do Pet"
+        type="textarea"
+        name="description"
+        placeholder="Descreva o seu pet"
+        handleOnChange={handleChange}
+        value={pet.description || ""}
+      />
+
       <input type="submit" value={btnText} />
     </form>
   );

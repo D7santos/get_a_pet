@@ -25,6 +25,9 @@ function MyPets() {
       })
       .then((response) => {
         setPets(response.data.pets);
+      })
+      .catch((err) => {
+        console.error("Erro ao buscar pets:", err);
       });
   }, [token]);
 

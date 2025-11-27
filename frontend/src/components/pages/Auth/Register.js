@@ -1,7 +1,7 @@
 import {useContext, useState} from 'react'
 
 
-import Input from '../../form/Input'
+import Input from '../../form/InputAndTextarea'
 import {Link} from 'react-router-dom'
 
 import styles from '../../form/Form.module.css'

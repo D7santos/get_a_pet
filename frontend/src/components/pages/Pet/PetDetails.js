@@ -1,11 +1,7 @@
 import api from "../../../assets/utils/api";
-
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-
 import styles from "./PetDetails.module.css";
-
-// hooks
 import useFlashMessage from "../../../assets/hooks/useFlashMessage";
 
 function PetDetails() {
@@ -26,7 +22,7 @@ function PetDetails() {
     const data = await api
       .patch(
         `pets/schedule/${pet._id}`,
-        {}, 
+        {},
         {
           headers: {
             Authorization: `Bearer ${JSON.parse(token)}`,
@@ -48,10 +44,15 @@ function PetDetails() {
     <>
       {pet.name && (
         <section className={styles.pet_details_container}>
-          <div className={styles.pet_details_header}>
-            <h1>Conhecendo o Pet: {pet.name}</h1>
+          
+          <div className={styles.pet_header}>
+            <h1>Conhecendo o Pet</h1>
             <p>Se tiver interesse, marque uma visita para conhecê-lo</p>
+          </div>
 
+          <div className={styles.details_grid}>
+            
+            {/* --- COLUNA ESQUERDA: IMAGENS --- */}
             <div className={styles.pet_images}>
               {pet.images.map((image, index) => (
                 <img
@@ -61,25 +62,48 @@ function PetDetails() {
                 />
               ))}
             </div>
+
+            {/* --- COLUNA DIREITA: INFO --- */}
+            <div className={styles.pet_info}>
+
+              <h1>{pet.name}</h1>
+
+
+              <div className={styles.info_row}>
+                <span className={styles.bold}>Idade:</span>
+                <span>{pet.age} anos</span>
+              </div>
+
+              <div className={styles.info_row}>
+                <span className={styles.bold}>Peso:</span>
+                <span>{pet.weight}kg</span>
+              </div>
+               
+              <div className={styles.info_row}>
+                 <span className={styles.bold}>Cor:</span>
+                 <span>{pet.color}</span>
+              </div>
+
+              {pet.description && (
+                <div className={styles.description_box}>
+                  <h3>Descrição</h3>
+                  <p>{pet.description}</p>
+                </div>
+              )}
+
+              <div className={styles.actions}>
+                {token ? (
+                  <button onClick={schedule}>Solicitar uma visita</button>
+                ) : (
+                  <p>
+                    Você precisa <Link to="/register">criar uma conta</Link> para
+                    solicitar a visita
+                  </p>
+                )}
+              </div>
+
+            </div>
           </div>
-
-          <p>
-            <span className="bold">Peso: </span>
-            {pet.weight}kg
-          </p>
-          <p>
-            <span className="bold">Idade: </span>
-            {pet.age} anos
-          </p>
-
-          {token ? (
-            <button onClick={schedule}>Solicitar uma visita</button>
-          ) : (
-            <p>
-              Você precisa <Link to="/register">criar uma conta</Link> para
-              solicitar a visita{" "}
-            </p>
-          )}
         </section>
       )}
     </>

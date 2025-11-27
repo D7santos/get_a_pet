@@ -5,6 +5,8 @@ import {useParams} from 'react-router-dom'
 
 import styles from './AddPet.module.css'
 
+import { useNavigate } from 'react-router-dom'
+
 import PetForm from '../../form/PetForm'
 
 // hooks
@@ -15,6 +17,7 @@ function EditPet() {
     const [token] = useState(localStorage.getItem('token') || '')
     const {id} = useParams()
     const {setFlashMessage} = useFlashMessage()
+    const navigate = useNavigate()
 
     useEffect(() => {
 
@@ -59,6 +62,11 @@ function EditPet() {
         })
 
         setFlashMessage(data.message, msgType)
+
+                
+        if(msgType !== 'error') {
+            navigate('/pet/mypets')
+        }
     }
 
     return (

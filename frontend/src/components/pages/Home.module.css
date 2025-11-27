@@ -18,6 +18,12 @@
     display: flex;
     flex-direction: column;
     text-align: center;
+    border: 2px solid #16479D;
+    border-radius: 10px;
+    justify-content: space-between; 
+    height: auto;
+    padding-bottom: 20px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, .4);
 }
 
 .pet_card_image {
@@ -26,6 +32,7 @@
     height: 225px;
     width: 100%;
     margin-bottom: 1.2em;
+    border-radius: 6px 6px 0 0;
 }
 
 .pet_card h3 {
@@ -36,7 +43,7 @@
 }
 
 .pet_card p {
-    margin-bottom: 1em;
+    margin-bottom: 2em;
 }
 
 .pet_card a {
@@ -60,4 +67,38 @@
     color: #25B456;
     font-weight: bold;
     padding: 15px;
+}
+
+
+/* PETS ADOTADOS */
+/* .adopted_card {
+    width: 22%;
+    margin: 1.5%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.adopted_card h3 {
+    color: #16479D;
+    margin-bottom: 1em;
+    font-size: 1.6em;
+    padding: 8px;
+}
+
+.adopted_card p {
+    margin-bottom: 2em;
+} */
+
+
+.adopted_text {
+    text-decoration: none;
+    background-color: #25B456;
+    color: #16479D;
+    font-weight: bold;
+    cursor:default;
+    transition: .5s;
+    padding: 15px 25px;
+    border-radius: 5px;
+    font-size: 1.1em;
 }

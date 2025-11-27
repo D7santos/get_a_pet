@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import styles from "./Profile.module.css";
 import formStyles from "../../form/Form.module.css";
 
-import Input from "../../form/Input";
+import Input from "../../form/InputAndTextarea";
 import RoundedImage from "../../layout/RoundedImage";
 
 import useFlashMessage from "../../../assets/hooks/useFlashMessage";
@@ -44,7 +44,7 @@ function Profile() {
 
         const formData = new FormData()
 
-        const userFormData = await Object.keys(user).forEach((key) => {
+        Object.keys(user).forEach((key) => {
             formData.append(key, user[key])
         }) 
 
