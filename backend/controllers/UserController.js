@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const Pet = require("../models/Pet");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -208,6 +209,17 @@ module.exports = class UserController {
                 { _id: user._id },
                 { $set: user },
                 { new: true }
+            )
+
+            await Pet.updateMany(
+                { 'user._id': user._id },
+                {
+                    $set: {
+                        'user.name': name,
+                        'user.phone': phone,
+                        'user.image': user.image
+                    }
+                }
             )
 
             res.status(200).json({
