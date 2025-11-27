@@ -12,7 +12,7 @@ module.exports = class PetController {
     // create a pet
     static async create(req, res) {
 
-        const { name, age, weight, color } = req.body
+        const { name, age, weight, color, description } = req.body
 
         const images = req.files
 
@@ -38,6 +38,10 @@ module.exports = class PetController {
             return
         }
 
+        if(!description) {
+            res.status(422).json({ message: 'A descrição é obrigatória' })
+        }
+
         if (images.length === 0) {
             res.status(422).json({ message: 'A imagem é obrigatória' })
             return
@@ -55,6 +59,7 @@ module.exports = class PetController {
             age,
             weight,
             color,
+            description,
             available,
             images: [],
             user: {
@@ -187,7 +192,7 @@ module.exports = class PetController {
 
         const id = req.params.id
 
-        const { name, age, weight, color, available } = req.body
+        const { name, age, weight, color, available, description } = req.body
 
         const images = req.files
 
@@ -242,6 +247,12 @@ module.exports = class PetController {
             return
         } else {
             updatedData.color = color
+        }
+
+        if(!description) {
+            res.status(422).json({ message: 'A descrição é obrigatória' })
+        }else {
+            updatedData.description = description
         }
 
         if (images.length > 0) {
